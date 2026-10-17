@@ -1,0 +1,68 @@
+<h1>Registrar venta</h1>
+<p class="subtitulo">Cada venta se guarda en una transacción: se confirma completa (COMMIT) o se deshace (ROLLBACK).</p>
+
+<div class="grid-2">
+  <form class="tarjeta" (ngSubmit)="registrar()">
+    <label for="producto">Producto</label>
+    <select id="producto" name="producto" [(ngModel)]="idProducto" (ngModelChange)="alCambiarProducto($event)" required>
+      <option [ngValue]="null" disabled>Seleccione un producto</option>
+      @for (p of productos(); track p.idProducto) {
+        <option [ngValue]="p.idProducto">{{ p.nombre }} ({{ p.cantidad }} disp.)</option>
+      }
+    </select>
+
+    <label for="cantidad">Cantidad</label>
+    <input id="cantidad" name="cantidad" type="number" min="1" [(ngModel)]="cantidad" required />
+
+    <label for="precio">Precio de venta (unitario)</label>
+    <input id="precio" name="precio" type="number" min="0" [(ngModel)]="precioVenta" />
+
+    <label>Total</label>
+    <p><strong>{{ total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</strong></p>
+
+    <label class="check">
+      <input type="checkbox" name="simular" [(ngModel)]="simularErrorContable" />
+      Simular fallo del sistema contable (para probar el ROLLBACK)
+    </label>
+
+    <div class="acciones">
+      <button class="primario" type="submit" [disabled]="!idProducto || cantidad < 1 || guardando()">
+        {{ guardando() ? 'Registrando…' : 'Registrar venta' }}
+      </button>
+    </div>
+
+    @if (mensaje(); as m) {
+      <div class="alerta" [class.exito]="m.tipo === 'exito'" [class.error]="m.tipo === 'error'">{{ m.texto }}</div>
+    }
+  </form>
+
+  <section>
+    <h3>Historial de ventas</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Fecha</th>
+          <th>Producto</th>
+          <th class="num">Cant.</th>
+          <th class="num">Precio</th>
+          <th class="num">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (v of ventas(); track v.idVenta) {
+          <tr>
+            <td>{{ v.idVenta }}</td>
+            <td>{{ v.fecha }}</td>
+            <td>{{ v.nombreProducto }}</td>
+            <td class="num">{{ v.cantidad }}</td>
+            <td class="num">{{ v.precioVenta | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+            <td class="num">{{ v.total | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+          </tr>
+        } @empty {
+          <tr><td colspan="6">Aún no hay ventas registradas.</td></tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>

@@ -1,0 +1,180 @@
+/* Colores institucionales UNIMINUTO */
+:root {
+  --azul: #0a2554;
+  --azul-medio: #1f5bb5;
+  --amarillo: #f9c300;
+  --verde: #1fab89;
+  --rojo: #e5484d;
+  --gris: #f4f6fa;
+  --borde: #dde2ec;
+  --texto: #1a2133;
+  --texto-suave: #5b6478;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+  color: var(--texto);
+  background: #fff;
+}
+
+h1 {
+  margin: 0 0 4px;
+  color: var(--azul);
+  font-family: Cambria, Georgia, serif;
+}
+
+.subtitulo {
+  margin: 0 0 24px;
+  color: var(--texto-suave);
+}
+
+.tarjeta {
+  background: var(--gris);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+label {
+  display: block;
+  margin: 12px 0 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+}
+
+.check input {
+  width: auto;
+}
+
+button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--azul);
+  color: #fff;
+}
+
+button.primario {
+  background: var(--amarillo);
+  color: var(--azul);
+}
+
+button.secundario {
+  background: #fff;
+  color: var(--azul);
+  border: 1px solid var(--borde);
+}
+
+button.peligro {
+  background: var(--rojo);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+th {
+  background: var(--azul);
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+}
+
+td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--borde);
+}
+
+td.num,
+th.num {
+  text-align: right;
+}
+
+.alerta {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.alerta.exito {
+  background: #dff5ee;
+  color: #0d6b54;
+}
+
+.alerta.error {
+  background: #fde4e5;
+  color: #a1252a;
+}
+
+.etiqueta {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.etiqueta.bajo {
+  background: #fde4e5;
+  color: #a1252a;
+}
+
+.etiqueta.ok {
+  background: #dff5ee;
+  color: #0d6b54;
+}

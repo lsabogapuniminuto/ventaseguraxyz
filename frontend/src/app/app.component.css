@@ -1,0 +1,61 @@
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 32px;
+  background: var(--azul);
+  color: #fff;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.marca small {
+  display: block;
+  color: #c7d3ea;
+  font-size: 12px;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--amarillo);
+  color: var(--azul);
+  font-weight: 800;
+}
+
+nav {
+  display: flex;
+  gap: 6px;
+}
+
+nav a {
+  padding: 8px 14px;
+  border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+nav a.activo {
+  background: var(--amarillo);
+  color: var(--azul);
+}
+
+.contenido {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}

@@ -1,0 +1,41 @@
+<h1>Integración contable</h1>
+<p class="subtitulo">Asientos generados automáticamente por cada venta confirmada (débito Caja 110505, crédito Ingresos 413524).</p>
+
+<div class="tarjeta" style="margin-bottom: 20px">
+  <strong>Total contabilizado:</strong>
+  {{ totalIngresos() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+  · {{ asientos().length }} asientos
+</div>
+
+@if (error()) {
+  <div class="alerta error">{{ error() }}</div>
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>Asiento</th>
+      <th>Venta</th>
+      <th>Fecha</th>
+      <th>Débito</th>
+      <th>Crédito</th>
+      <th class="num">Valor</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (a of asientos(); track a.idAsiento) {
+      <tr>
+        <td>{{ a.idAsiento }}</td>
+        <td>#{{ a.idVenta }}</td>
+        <td>{{ a.fecha }}</td>
+        <td>{{ a.cuentaDebito }} Caja</td>
+        <td>{{ a.cuentaCredito }} Ingresos</td>
+        <td class="num">{{ a.valor | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+        <td>{{ a.descripcion }}</td>
+      </tr>
+    } @empty {
+      <tr><td colspan="7">Aún no hay asientos contables.</td></tr>
+    }
+  </tbody>
+</table>
